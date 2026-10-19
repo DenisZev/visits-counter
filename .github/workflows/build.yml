@@ -23,7 +23,7 @@ jobs:
       - name: Set lowercase image name
         id: image
         run: |
-          OWNER_LC=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]
+          OWNER_LC=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
           echo "name=${OWNER_LC}/visits-counter-backend" >> "$GITHUB_OUTPUT"
 
       - name: Set up Docker Buildx
