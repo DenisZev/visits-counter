@@ -3,11 +3,10 @@ name: Build and Push Docker Image
 on:
   push:
     branches: [main]
-  workflow_dispatch:  # позволяет запустить вручную из веб-интерфейса
+  workflow_dispatch:
 
 env:
   REGISTRY: ghcr.io
- 
 
 jobs:
   build-and-push:
@@ -42,7 +41,7 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+            ${{ env.REGISTRY }}/${{ steps.image.outputs.name }}:latest
+            ${{ env.REGISTRY }}/${{ steps.image.outputs.name }}:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
